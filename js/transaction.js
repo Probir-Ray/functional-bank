@@ -26,7 +26,7 @@ document.getElementById('withdrawBtn').addEventListener('click', function() {
     const withdrawInputText = withdrawInput.value;
     const withdrawAmount = parseFloat(withdrawInputText);
 
-    const withdrawBalance = document.querySelector('.withdraw-balance');
+    const withdrawBalance = document.querySelector('#withdraw-balance');
     const previousWithdrawTotalText = withdrawBalance.innerText;
     const previousWithdrawTotal = parseFloat(previousWithdrawTotalText);
     

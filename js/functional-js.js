@@ -1,21 +1,28 @@
-function getInputValue() {
-    const depositInput = document.getElementById('deposit-input');
-    const depositAmountText = depositInput.value;
-    const depositAmount = parseFloat(depositAmountText);
-    depositInput.value = '';    
-    return depositAmount;
+function getInputValue(inputId) {
+    const inputField = document.getElementById(inputId);
+    const amountText = inputField.value;
+    const amount = parseFloat(amountText);
+    inputField.value = '';    
+    return amount;
+}
+
+
+function totalValue(balanceId, amount) {
+    debugger;
+    const totalAmount = document.getElementById(balanceId);
+    const totalAmountText = totalAmount.innerText;
+    const previousTotalAmount = parseFloat(totalAmountText);
+
+    totalAmount.innerText = previousTotalAmount + amount;    
 }
 
 
 
 document.getElementById('depositBtn').addEventListener('click', function(){
-    const depositAmount = getInputValue();
 
-    const depositTotal = document.getElementById('deposit-balance');
-    const depositTotalText = depositTotal.innerText;
-    const previousDepositTotal = parseFloat(depositTotalText);
+    const depositAmount = getInputValue('deposit-input');
 
-    depositTotal.innerText = previousDepositTotal + depositAmount;
+    totalValue('deposit-balance', depositAmount)
 
     const balanceTotal = document.getElementById('balance-amount');
     const balanceTotalText = balanceTotal.innerHTML;
@@ -23,22 +30,14 @@ document.getElementById('depositBtn').addEventListener('click', function(){
 
     balanceTotal.innerText = previousBalanceTotal + depositAmount;
 
-
-    
-
 });
 
 
 document.getElementById('withdrawBtn').addEventListener('click', function() {
-    const withdrawInput = document.getElementById('withdraw-input');
-    const withdrawInputText = withdrawInput.value;
-    const withdrawAmount = parseFloat(withdrawInputText);
 
-    const withdrawBalance = document.querySelector('.withdraw-balance');
-    const previousWithdrawTotalText = withdrawBalance.innerText;
-    const previousWithdrawTotal = parseFloat(previousWithdrawTotalText);
-    
-    withdrawBalance.innerText = previousWithdrawTotal + withdrawAmount;
+    const withdrawAmount = getInputValue('withdraw-input');
+
+    totalValue('withdraw-balance', withdrawAmount)
 
     const balanceTotal = document.getElementById('balance-amount');
     const balanceTotalText = balanceTotal.innerHTML;
@@ -46,6 +45,5 @@ document.getElementById('withdrawBtn').addEventListener('click', function() {
 
     balanceTotal.innerText = previousBalanceTotal - withdrawAmount;
 
-    withdrawInput.value = '';
 
 })
